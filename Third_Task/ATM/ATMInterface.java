@@ -24,7 +24,7 @@ public class ATMInterface {
                     System.out.println(e.getMessage());
                     input.next(); // to clear invalid input
                 }
-                
+
                 System.out.println();
 
                 switch (choose) {
@@ -40,7 +40,7 @@ public class ATMInterface {
                                 if (amount > balance) {
                                     System.out.println("The money you want is not exist.");
                                 }
-
+                                
                             } while (amount > balance);
 
                         } catch (InputMismatchException e) {
@@ -82,6 +82,5 @@ public class ATMInterface {
         System.out.println("Enter 3 for Check Balance.");
         System.out.println("Enter 4 for EXIT.");
         System.out.println("----------------------------------------------------------------");
-
     }
 }
