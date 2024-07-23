@@ -16,7 +16,7 @@ public class Start {
         boolean booleanCheck = false;
 
         do {
-            random = (int) (Math.random() * 100) + 1;
+            random = generanteRandom() ;
 
             System.out.println("##### Ronund Number: " + rounds + " #####\n");
             System.out.println("##### You have just FIVE tries in the round #####");
@@ -85,5 +85,9 @@ public class Start {
         System.out.println("Have a nice day.");
 
         scanner.close();
+    }
+
+    public static int generanteRandom() {
+        return (int) (Math.random() * 100) + 1;
     }
 }
