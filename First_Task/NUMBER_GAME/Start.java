@@ -1,14 +1,13 @@
 package NUMBER_GAME;
 
-import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Start {
 
     public static void start() {
         Scanner scanner = new Scanner(System.in);
 
-        int random = 0;
         int userInput = 0;
         int rounds = 1;
         int score = 0;
@@ -16,18 +15,16 @@ public class Start {
         boolean booleanCheck = false;
 
         do {
-            random = generanteRandom() ;
+            int random = generateRandom();
 
-            System.out.println("##### Ronund Number: " + rounds + " #####\n");
+            System.out.println("##### Round Number: " + rounds + " #####\n");
             System.out.println("##### You have just FIVE tries in the round #####");
 
             for (int i = 5; i > 0; i--) {
-
                 try {
-                    while (userInput < 0 || userInput > 100) {
-                        System.out.print("Enter the guess number between (1:100) : ");
-                        userInput = scanner.nextInt();
-                    }
+                    System.out.print("Enter the guess number between (1:100) : ");
+                    userInput = scanner.nextInt();
+
                 } catch (InputMismatchException exception) {
                     System.out.println(exception.getMessage());
                     scanner.next(); // Clear the invalid input
@@ -42,7 +39,7 @@ public class Start {
                     break;
                 } else if (userInput < random) {
                     System.out.println("Too low. Try again.\n");
-                } else if (userInput > random) {
+                } else {
                     System.out.println("Too high. Try again.\n");
                 }
 
@@ -54,9 +51,7 @@ public class Start {
 
             scanner.nextLine();
 
-            while (!(userCheck.equalsIgnoreCase("YES") || userCheck.equalsIgnoreCase("Y")
-                    || userCheck.equalsIgnoreCase("NO")
-                    || userCheck.equalsIgnoreCase("N"))) {
+            do {
                 try {
                     System.out.println("##### Do you want to play again? (Yes/No) #####");
                     userCheck = scanner.nextLine();
@@ -64,6 +59,9 @@ public class Start {
                     System.out.println(exception.getMessage());
                     scanner.next(); // Clear the invalid input
                 }
+
+                assert userCheck != null; // to assert that userCheck won't be null if it null it'll make an error
+                                          // called AssertionError
 
                 if (!userCheck.equalsIgnoreCase("YES") && !userCheck.equalsIgnoreCase("Y")
                         && !userCheck.equalsIgnoreCase("NO") && !userCheck.equalsIgnoreCase("N")) {
@@ -75,7 +73,9 @@ public class Start {
                 } else if (userCheck.equalsIgnoreCase("NO") || userCheck.equalsIgnoreCase("N")) {
                     booleanCheck = false;
                 }
-            }
+            } while (!(userCheck.equalsIgnoreCase("YES") || userCheck.equalsIgnoreCase("Y")
+                    || userCheck.equalsIgnoreCase("NO")
+                    || userCheck.equalsIgnoreCase("N")));
             rounds++;
         } while (booleanCheck);
 
@@ -87,7 +87,7 @@ public class Start {
         scanner.close();
     }
 
-    public static int generanteRandom() {
+    public static int generateRandom() {
         return (int) (Math.random() * 100) + 1;
     }
 }
