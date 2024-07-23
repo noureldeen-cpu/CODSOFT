@@ -24,6 +24,7 @@ public class ATMInterface {
                     System.out.println(e.getMessage());
                     input.next(); // to clear invalid input
                 }
+                
                 System.out.println();
 
                 switch (choose) {
